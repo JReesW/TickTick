@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TickTick5.GameManagement
 {
+    // class to deal with the camera for side scrolling
     class Camera
     {
         public Camera()
