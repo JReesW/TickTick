@@ -101,7 +101,9 @@ partial class Level : GameObjectList
     {
         TileField tiles = Find("tiles") as TileField;
         Vector2 startPosition = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight);
-        Player player = new Player(startPosition);
+        Bullet bullet = new Bullet();
+        Add(bullet);
+        Player player = new Player(startPosition, bullet);
         Add(player);
         return new Tile("", TileType.Background);
     }
@@ -175,4 +177,5 @@ partial class Level : GameObjectList
         waterdrops.Add(w);
         return new Tile();
     }
+
 }

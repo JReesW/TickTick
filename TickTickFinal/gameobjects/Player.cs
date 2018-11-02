@@ -12,14 +12,16 @@ partial class Player : AnimatedGameObject
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
 
-    public Player(Vector2 start) : base(2, "player")
+    public Player(Vector2 start, Bullet bullet) : base(2, "player")
     {
         LoadAnimation("Sprites/Player/spr_idle", "idle", true); 
         LoadAnimation("Sprites/Player/spr_run@13", "run", true, 0.05f);
         LoadAnimation("Sprites/Player/spr_jump@14", "jump", false, 0.05f); 
         LoadAnimation("Sprites/Player/spr_celebrate@14", "celebrate", false, 0.05f);
         LoadAnimation("Sprites/Player/spr_die@5", "die", false);
-        LoadAnimation("Sprites/Player/spr_explode@5x5", "explode", false, 0.04f); 
+        LoadAnimation("Sprites/Player/spr_explode@5x5", "explode", false, 0.04f);
+
+        this.bullet = bullet;
 
         startPosition = start;
         Reset();
@@ -69,6 +71,10 @@ partial class Player : AnimatedGameObject
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround)
         {
             Jump();
+        }
+        if (inputHelper.IsKeyDown(Keys.B))
+        {
+            Shooting();
         }
     }
 
