@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class SpriteGameObject : GameObject
 {
     protected SpriteSheet sprite;
     protected Vector2 origin;
-    public bool PerPixelCollisionDetection = true;
+    public bool PerPixelCollisionDetection = true; 
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
         : base(layer, id)
@@ -26,6 +27,16 @@ public class SpriteGameObject : GameObject
         {
             return;
         }
+        Console.WriteLine(this.GetType().Name);
+        if(this.GetType().Name == "Player")
+        {
+            GameEnvironment.Camera.getOffset(this.GlobalPosition);
+            sprite.Draw(spriteBatch, this.GlobalPosition - GameEnvironment.Camera.offset, origin);
+        }
+        else if(this.GetType().Name == "Tile" || this.GetType().Name == "WaterDrop" || this.id == "exit" || this.GetType().Name == "Rocket" || this.GetType().Name == "Sparky" || this.GetType().Name == "Turtle" || this.GetType().Name == "PatrollingEnemy" || this.GetType().Name == "UnpredictableEnemy" || this.GetType().Name == "PlayerFollowingEnemy")
+        {
+            sprite.Draw(spriteBatch, this.GlobalPosition - GameEnvironment.Camera.offset, origin);
+        }else
         sprite.Draw(spriteBatch, this.GlobalPosition, origin);
     }
 

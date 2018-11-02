@@ -3,15 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
-namespace TickTick5.GameManagement
+
+// class to deal with the camera for side scrolling
+public class Camera
 {
-    // class to deal with the camera for side scrolling
-    class Camera
-    {
-        public Camera()
-        {
+    public Vector2 offset;
+    public int currentLevelWidth;
 
+    public Camera()
+    {
+        offset = new Vector2(0,0);
+    }
+
+    public void getOffset(Vector2 playerPos)
+    {
+        if(playerPos.X < GameEnvironment.Screen.X/2)
+        {
+            offset.X = 0;
         }
+        else
+        {
+            offset.X = playerPos.X - GameEnvironment.Screen.X / 2;
+        }
+        if (playerPos.Y < GameEnvironment.Screen.Y / 2)
+        {
+            offset.Y = 0;
+        }
+        else
+        {
+            offset.Y = playerPos.Y - GameEnvironment.Screen.Y / 2;
+        }
+        //offset = new Vector2(playerPos.X - GameEnvironment.Screen.X / 2, playerPos.Y - GameEnvironment.Screen.Y / 2);
     }
 }

@@ -15,6 +15,7 @@ public class GameEnvironment : Game
     protected static GameStateManager gameStateManager;
     protected static Random random;
     protected static AssetManager assetManager;
+    protected static Camera camera;
     protected static GameSettingsManager gameSettingsManager;
 
     public GameEnvironment()
@@ -25,6 +26,7 @@ public class GameEnvironment : Game
         gameStateManager = new GameStateManager();
         spriteScale = Matrix.CreateScale(1, 1, 1);
         random = new Random();
+        camera = new Camera();
         assetManager = new AssetManager(Content);
         gameSettingsManager = new GameSettingsManager();
     }
@@ -43,6 +45,11 @@ public class GameEnvironment : Game
     public static AssetManager AssetManager
     {
         get { return assetManager; }
+    }
+
+    public static Camera Camera
+    {
+        get { return camera; }
     }
 
     public static GameStateManager GameStateManager

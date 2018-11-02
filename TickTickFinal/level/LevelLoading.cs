@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
+using System;
 
 partial class Level : GameObjectList
 {
+    public int levelWidth = 0;
+
     public void LoadTiles(string path)
     {
         List<string> textLines = new List<string>();
         StreamReader fileReader = new StreamReader(path);
         string line = fileReader.ReadLine();
         int width = line.Length;
+        levelWidth = width;
         while (line != null)
         {
             textLines.Add(line);

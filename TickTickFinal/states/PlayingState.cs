@@ -3,12 +3,14 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 class PlayingState : IGameLoopObject
 {
     protected List<Level> levels;
     protected int currentLevelIndex;
     protected ContentManager content;
+    //protected Camera camera;
 
     public PlayingState(ContentManager content)
     {
@@ -17,6 +19,7 @@ class PlayingState : IGameLoopObject
         levels = new List<Level>();
         LoadLevels();
         LoadLevelsStatus(content.RootDirectory + "/Levels/levels_status.txt");
+        //camera = new Camera();
     }
 
     public Level CurrentLevel
@@ -59,6 +62,8 @@ class PlayingState : IGameLoopObject
             CurrentLevel.Solved = true;
             GameEnvironment.GameStateManager.SwitchTo("levelFinishedState");
         }
+
+        GameEnvironment.Camera.currentLevelWidth = CurrentLevel.levelWidth;
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -88,7 +93,7 @@ class PlayingState : IGameLoopObject
 
     public void LoadLevels()
     {
-        for (int currLevel = 1; currLevel <= 10; currLevel++)
+        for (int currLevel = 1; currLevel <= 11; currLevel++)
         {
             levels.Add(new Level(currLevel));
         }
