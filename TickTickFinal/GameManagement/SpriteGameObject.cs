@@ -19,7 +19,7 @@ public class SpriteGameObject : GameObject
         {
             sprite = null;
         }
-    }    
+    }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
@@ -27,17 +27,22 @@ public class SpriteGameObject : GameObject
         {
             return;
         }
-        Console.WriteLine(this.GetType().Name);
-        if(this.GetType().Name == "Player")
-        {
-            GameEnvironment.Camera.getOffset(this.GlobalPosition);
+
+        string[] typenames = { "Tile", "WaterDrop", "Rocket", "Sparky", "Turtle", "PatrollingEnemy", "UnpredictableEnemy", "PlayerFollowingEnemy", "Bullet", "Clouds" };
+        
+        if (this.GetType().Name == "Player")
+        { GameEnvironment.Camera.getOffset(this.GlobalPosition);
             sprite.Draw(spriteBatch, this.GlobalPosition - GameEnvironment.Camera.offset, origin);
         }
-        else if(this.GetType().Name == "Tile" || this.GetType().Name == "WaterDrop" || this.id == "exit" || this.GetType().Name == "Rocket" || this.GetType().Name == "Sparky" || this.GetType().Name == "Turtle" || this.GetType().Name == "PatrollingEnemy" || this.GetType().Name == "UnpredictableEnemy" || this.GetType().Name == "PlayerFollowingEnemy")
+        else if (Array.IndexOf(typenames, this.GetType().Name) > -1 || this.id == "exit")
         {
             sprite.Draw(spriteBatch, this.GlobalPosition - GameEnvironment.Camera.offset, origin);
-        }else
-        sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        }
+        else if (this.id == "mountain" || this.id == "clouds") {
+            sprite.Draw(spriteBatch, this.GlobalPosition - new Vector2((GameEnvironment.Camera.offset.X / 10) * this.layer, 0), origin);
+        }
+        else
+            sprite.Draw(spriteBatch, this.GlobalPosition, origin);
     }
 
     public SpriteSheet Sprite

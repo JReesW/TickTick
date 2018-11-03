@@ -11,6 +11,7 @@ public class Camera
 {
     public Vector2 offset;
     public int currentLevelWidth;
+    public int currentLevelHeight;
 
     public Camera()
     {
@@ -22,6 +23,9 @@ public class Camera
         if(playerPos.X < GameEnvironment.Screen.X/2)
         {
             offset.X = 0;
+        }else if (playerPos.X > currentLevelWidth - GameEnvironment.Screen.X / 2)
+        {
+            offset.X = currentLevelWidth - GameEnvironment.Screen.X;
         }
         else
         {
@@ -31,10 +35,13 @@ public class Camera
         {
             offset.Y = 0;
         }
+        else if (playerPos.Y > currentLevelHeight - GameEnvironment.Screen.Y / 2)
+        {
+            offset.Y = currentLevelHeight - GameEnvironment.Screen.Y;
+        }
         else
         {
             offset.Y = playerPos.Y - GameEnvironment.Screen.Y / 2;
         }
-        //offset = new Vector2(playerPos.X - GameEnvironment.Screen.X / 2, playerPos.Y - GameEnvironment.Screen.Y / 2);
     }
 }

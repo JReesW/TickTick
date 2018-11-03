@@ -10,7 +10,6 @@ class PlayingState : IGameLoopObject
     protected List<Level> levels;
     protected int currentLevelIndex;
     protected ContentManager content;
-    //protected Camera camera;
 
     public PlayingState(ContentManager content)
     {
@@ -19,7 +18,6 @@ class PlayingState : IGameLoopObject
         levels = new List<Level>();
         LoadLevels();
         LoadLevelsStatus(content.RootDirectory + "/Levels/levels_status.txt");
-        //camera = new Camera();
     }
 
     public Level CurrentLevel
@@ -36,6 +34,9 @@ class PlayingState : IGameLoopObject
             {
                 currentLevelIndex = value;
                 CurrentLevel.Reset();
+                
+                GameEnvironment.Camera.currentLevelWidth = CurrentLevel.levelWidth;
+                GameEnvironment.Camera.currentLevelHeight = CurrentLevel.levelHeight;
             }
         }
     }
@@ -62,8 +63,6 @@ class PlayingState : IGameLoopObject
             CurrentLevel.Solved = true;
             GameEnvironment.GameStateManager.SwitchTo("levelFinishedState");
         }
-
-        GameEnvironment.Camera.currentLevelWidth = CurrentLevel.levelWidth;
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -93,7 +92,9 @@ class PlayingState : IGameLoopObject
 
     public void LoadLevels()
     {
-        for (int currLevel = 1; currLevel <= 11; currLevel++)
+        int dircount = Directory.GetFiles("Content/Levels/").Length-1;
+        Console.WriteLine(dircount);
+        for (int currLevel = 1; currLevel <= dircount; currLevel++)
         {
             levels.Add(new Level(currLevel));
         }

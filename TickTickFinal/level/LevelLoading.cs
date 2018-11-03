@@ -6,19 +6,22 @@ using System;
 partial class Level : GameObjectList
 {
     public int levelWidth = 0;
+    public int levelHeight = 0;
+    string timeline = "1";
 
     public void LoadTiles(string path)
     {
         List<string> textLines = new List<string>();
         StreamReader fileReader = new StreamReader(path);
+        timeline = fileReader.ReadLine();
         string line = fileReader.ReadLine();
         int width = line.Length;
-        levelWidth = width;
         while (line != null)
         {
             textLines.Add(line);
             line = fileReader.ReadLine();
         }
+        int height = textLines.Count-1;
         TileField tiles = new TileField(textLines.Count - 1, width, 1, "tiles");
 
         GameObjectList hintField = new GameObjectList(100);
@@ -38,6 +41,8 @@ partial class Level : GameObjectList
         Add(tiles);
         tiles.CellWidth = 72;
         tiles.CellHeight = 55;
+        levelWidth = width * tiles.CellWidth;
+        levelHeight = height * tiles.CellHeight;
         for (int x = 0; x < width; ++x)
         {
             for (int y = 0; y < textLines.Count - 1; ++y)

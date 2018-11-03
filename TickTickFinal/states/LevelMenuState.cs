@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System.IO;
 
 class LevelMenuState : GameObjectList
 {
@@ -15,7 +16,8 @@ class LevelMenuState : GameObjectList
         Add(background);
 
         // add the level buttons
-        for (int i = 0; i < 10; i++)
+        int dircount = Directory.GetFiles("Content/Levels/").Length-1;
+        for (int i = 0; i < dircount; i++)
         {
             int row = i / 4;
             int column = i % 4;

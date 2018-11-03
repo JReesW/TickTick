@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 partial class Player :  AnimatedGameObject
 {
-    Bullet bullet;
+    public Bullet bullet;
 
     public void Jump(float speed = 1100)
     {

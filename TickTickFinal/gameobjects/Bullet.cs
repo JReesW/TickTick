@@ -9,17 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 public class Bullet : SpriteGameObject
 {
 
-     public Bullet(int layer = 1, string id = "") : base("Sprites/spr_water", layer, id)
-     {
-     }
-
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    public Bullet(int layer = 1, string id = "Bullet") : base("Sprites/spr_water", layer, id)
     {
-        if (!visible || sprite == null)
-        {
-            return;
-        }
-        sprite.Draw(spriteBatch, position, origin);
     }
 
     public override void Reset()
@@ -69,7 +60,7 @@ public class Bullet : SpriteGameObject
         {
             CheckCollision();
         }
-        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
+        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Camera.currentLevelWidth, GameEnvironment.Camera.currentLevelHeight);
         if (!screenBox.Intersects(this.BoundingBox))
         {
             Reset();

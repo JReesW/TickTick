@@ -13,25 +13,12 @@ partial class Level : GameObjectList
         backgroundSky.Position = new Vector2(0, GameEnvironment.Screen.Y - backgroundSky.Height);
         backgrounds.Add(backgroundSky);
 
-        // add a few random mountains
-        for (int i = 0; i < 5; i++)
-        {
-            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), 1);
-            mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2, 
-                GameEnvironment.Screen.Y - mountain.Height);
-            backgrounds.Add(mountain);
-        }
-
-        Clouds clouds = new Clouds(2);
-        backgrounds.Add(clouds);
-        Add(backgrounds);
+        
 
         SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100);
         timerBackground.Position = new Vector2(10, 10);
         Add(timerBackground);
-        TimerGameObject timer = new TimerGameObject(101, "timer");
-        timer.Position = new Vector2(25, 30);
-        Add(timer);
+        
 
         quitButton = new Button("Sprites/spr_button_quit", 100);
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);
@@ -41,7 +28,25 @@ partial class Level : GameObjectList
         Add(new GameObjectList(1, "waterdrops"));
         Add(new GameObjectList(2, "enemies"));
 
+        
         LoadTiles("Content/Levels/" + levelIndex + ".txt");
+
+        // add a few random mountains
+        for (int i = 0; i < 5; i++)
+        {
+            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), GameEnvironment.Random.Next(3) + 1, "mountain");
+            mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * levelWidth - mountain.Width / 2,
+                GameEnvironment.Screen.Y - mountain.Height);
+            backgrounds.Add(mountain);
+        }
+
+        Clouds clouds = new Clouds(new Vector2(levelWidth, levelHeight), (GameEnvironment.Random.Next(2) + 5), "clouds");
+        backgrounds.Add(clouds);
+        Add(backgrounds);
+
+        TimerGameObject timer = new TimerGameObject(101, "timer", float.Parse(timeline));
+        timer.Position = new Vector2(25, 30);
+        Add(timer);
     }
 
     public bool Completed
