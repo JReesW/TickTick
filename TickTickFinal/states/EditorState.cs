@@ -19,7 +19,7 @@ public class EditorState : GameObjectList
     int levelHeight;
 
     char[] availableTiles = ".-+@XW1#^*TRrSABC".ToCharArray();
-    int selectorIndex = 1;
+    int selectorIndex = 0;
     EditorSelector selector;
 
     public EditorState()

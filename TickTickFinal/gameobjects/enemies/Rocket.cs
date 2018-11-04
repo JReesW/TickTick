@@ -38,7 +38,7 @@ class Rocket : AnimatedGameObject
         }
         CheckPlayerCollision();
         // check if we are outside the screen
-        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
+        Rectangle screenBox = new Rectangle(0, 0, GameEnvironment.Camera.currentLevelWidth, GameEnvironment.Camera.currentLevelHeight);
         if (!screenBox.Intersects(this.BoundingBox))
         {
             Reset();
