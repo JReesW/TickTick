@@ -138,7 +138,7 @@ public class EditorState : GameObjectList
         int pressedTile = -1;
         foreach(EditorTile tile in editorTiles)
         {
-            if (tile.Pressed)
+            if (tile.Pressed && !backButton.Pressed)
             {
                 pressedTile = (int)(tile.Position.X / tileWidth + (tile.Position.Y / tileHeight) * 25);
             }
