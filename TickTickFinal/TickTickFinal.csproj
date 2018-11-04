@@ -79,6 +79,7 @@
     <Compile Include="menu\EditorTile.cs" />
     <Compile Include="menu\LevelButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="states\EditorHelpState.cs" />
     <Compile Include="states\EditorState.cs" />
     <Compile Include="states\GameOverState.cs" />
     <Compile Include="states\HelpState.cs" />

@@ -25,6 +25,7 @@ class TickTick : GameEnvironment
         
         gameStateManager.AddGameState("titleMenu", new TitleMenuState());
         gameStateManager.AddGameState("helpState", new HelpState());
+        gameStateManager.AddGameState("editorHelpState", new EditorHelpState());
         gameStateManager.AddGameState("playingState", new PlayingState(Content));
         gameStateManager.AddGameState("levelMenu", new LevelMenuState());
         gameStateManager.AddGameState("gameOverState", new GameOverState());
