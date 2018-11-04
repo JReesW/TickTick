@@ -2,7 +2,7 @@
 
 class TitleMenuState : GameObjectList
 {
-    protected Button playButton, helpButton;
+    protected Button playButton, helpButton, editorButton;
 
     public TitleMenuState()
     {
@@ -19,6 +19,11 @@ class TitleMenuState : GameObjectList
         helpButton = new Button("Sprites/spr_button_help", 1);
         helpButton.Position = new Vector2((GameEnvironment.Screen.X - helpButton.Width) / 2, 600);
         Add(helpButton);
+
+        // add an editor button
+        editorButton = new Button("Sprites/spr_button_editor", 1);
+        editorButton.Position = new Vector2((GameEnvironment.Screen.X - helpButton.Width) / 2, 660);
+        Add(editorButton);
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -31,6 +36,10 @@ class TitleMenuState : GameObjectList
         else if (helpButton.Pressed)
         {
             GameEnvironment.GameStateManager.SwitchTo("helpState");
+        }
+        else if (editorButton.Pressed)
+        {
+            GameEnvironment.GameStateManager.SwitchTo("editorState");
         }
     }
 }

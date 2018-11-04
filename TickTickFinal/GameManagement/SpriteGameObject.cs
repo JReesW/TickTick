@@ -28,7 +28,7 @@ public class SpriteGameObject : GameObject
             return;
         }
 
-        string[] typenames = { "Tile", "WaterDrop", "Rocket", "Sparky", "Turtle", "PatrollingEnemy", "UnpredictableEnemy", "PlayerFollowingEnemy", "Bullet", "Clouds" };
+        string[] typenames = { "Tile", "WaterDrop", "Rocket", "Sparky", "Turtle", "PatrollingEnemy", "UnpredictableEnemy", "PlayerFollowingEnemy", "Bullet", "Clouds", "EditorTile" };
         
         if (this.GetType().Name == "Player")
         { GameEnvironment.Camera.getOffset(this.GlobalPosition);

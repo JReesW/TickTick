@@ -23,6 +23,10 @@ class LevelButton : GameObjectList
 
         text = new TextGameObject("Fonts/Hud", 1);
         text.Text = levelIndex.ToString();
+        if(levelIndex == 12)
+        {
+            text.Text = "Custom";
+        }
         text.Position = new Vector2(sprLock.Width - text.Size.X - 10, 5);
         Add(text);
     }

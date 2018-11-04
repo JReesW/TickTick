@@ -21,6 +21,7 @@ class Sparky : AnimatedGameObject
         position.Y = initialY;
         yOffset = 120;
         velocity = Vector2.Zero;
+        visible = true;
     }
 
     public override void Update(GameTime gameTime)

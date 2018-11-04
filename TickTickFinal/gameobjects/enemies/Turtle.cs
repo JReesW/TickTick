@@ -17,6 +17,7 @@ class Turtle : AnimatedGameObject
     {
         sneezeTime = 0.0f;
         idleTime = 5.0f;
+        visible = true;
     }
 
     public override void Update(GameTime gameTime)
